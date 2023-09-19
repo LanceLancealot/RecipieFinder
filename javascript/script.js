@@ -3,12 +3,6 @@ const ingredientInput = document.getElementById("ingredient");
 const ingredientList = document.getElementById("ingredient-list");
 const recipeList = document.getElementById("recipe-list");
 
-
-// Function to add an ingredient to the list and fetch recipes
-function addIngredient() {
-  const ingredientValue = ingredientInput.value.trim();
-
-
 // Function to display recipes on the web page
 function displayRecipes(ingredientValue) {
   // Clear the previous recipes
@@ -86,27 +80,3 @@ form.addEventListener("submit", function (event) {
   event.preventDefault(); // Prevent the default form submission
   addIngredient();
 });
-  
-        // Call the fetchRecipes function with the ingredients list
-        fetchRecipes(ingredientsArray);
-    }
-}
-
-function fetchRecipes(ingredientsArray) {
-    const apiKey = "5ae04e38092e84803117d87ec2025d5e";
-    const apiUrl = `https://api.example.com/recipes?ingredients=${ingredientsArray.join(",")}&apiKey=${apiKey}`;
-
-    fetch(apiUrl)
-        .then((response) => response.json())
-        .then((data) => {
-            recipeList.innerHTML = ""; // Clear previous recipe list
-            data.recipes.forEach((recipe) => {
-                const listItem = document.createElement("li");
-                listItem.textContent = recipe.name;
-                recipeList.appendChild(listItem);
-            });
-        })
-        .catch((error) => {
-            console.error("Error fetching recipes:", error);
-        });
-}

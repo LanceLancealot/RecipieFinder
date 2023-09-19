@@ -3,22 +3,19 @@ const ingredientInput = document.getElementById("ingredient");
 const ingredientList = document.getElementById("ingredient-list");
 const recipeList = document.getElementById("recipe-list");
 
-<<<<<<< HEAD
 // Function to add an ingredient to the list and fetch recipes
 function addIngredient() {
   const ingredientValue = ingredientInput.value.trim();
-=======
 
 // Function to add an ingredient to the list and fetch recipes
 function addIngredient() {
   const ingredientValue = ingredientInput.value.trim();
-=======
+
 
 // Function to display recipes on the web page
 function displayRecipes(recipes) {
     // Clear the previous recipes
     recipeList.innerHTML = '';
->>>>>>> 98f35e48fc2bfa5fcc037ff736c24dadf34d4453
 
   if (ingredientValue !== "") {
     const listItem = document.createElement("li");
@@ -79,8 +76,6 @@ ingredientInput.addEventListener("keydown", function (event) {
     addIngredient();
   }
 });
-<<<<<<< HEAD
-=======
 
 function addIngredient() {
     const ingredientValue = ingredientInput.value.trim();
@@ -145,7 +140,7 @@ ingredientInput.addEventListener("keydown", function (event) {
     addIngredient();
   }
 });
-=======
+
         // Call the fetchRecipes function with the ingredients list
         fetchRecipes(ingredientsArray);
     }
@@ -169,4 +164,3 @@ function fetchRecipes(ingredientsArray) {
             console.error("Error fetching recipes:", error);
         });
 }
->>>>>>> 98f35e48fc2bfa5fcc037ff736c24dadf34d4453

@@ -3,6 +3,11 @@ const ingredientInput = document.getElementById("ingredient");
 const ingredientList = document.getElementById("ingredient-list");
 const recipeList = document.getElementById("recipe-list");
 
+
+// Function to add an ingredient to the list and fetch recipes
+function addIngredient() {
+  const ingredientValue = ingredientInput.value.trim();
+
 // Function to display recipes on the web page
 function displayRecipes(ingredientValue) {
   // Clear the previous recipes
@@ -85,6 +90,11 @@ ingredientInput.addEventListener("keydown", function (event) {
     addIngredient();
   }
 });
+        // Call the fetchRecipes function with the ingredients list
+        fetchRecipes(ingredientsArray);
+    }
+}
+
 
 // Get references to the form, input field, and button
 const form = document.getElementById("ingredient-form");

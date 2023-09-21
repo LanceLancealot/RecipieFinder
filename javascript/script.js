@@ -93,7 +93,7 @@ ingredientInput.addEventListener("keydown", function (event) {
         // Call the fetchRecipes function with the ingredients list
         fetchRecipes(ingredientsArray);
     }
-}
+
 
 
 // Get references to the form, input field, and button

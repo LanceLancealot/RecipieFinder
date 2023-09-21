@@ -23,11 +23,16 @@ function displayRecipes(ingredientValue) {
   }
 }
 
-// Function to fetch recipes using JSONP
+// Function to fetch recipes using JSONP with flexible ingredient matching
 function fetchRecipes(ingredientsArray) {
   const apiKey = "5ae04e38092e84803117d87ec2025d5e";
-  const ingredientText = encodeURIComponent(ingredientsArray.join(','));
-  const apiUrl = `https://api.edamam.com/api/recipes/v2?type=public&q=${ingredientText}&app_id=f6f259aa&app_key=${apiKey}`;
+  let apiUrl = `https://api.edamam.com/api/recipes/v2?type=public`;
+
+  if (ingredientsArray.length > 0) {
+    apiUrl += `&q=${encodeURIComponent(ingredientsArray.join(' OR '))}`;
+  }
+
+  apiUrl += `&app_id=f6f259aa&app_key=${apiKey}`;
 
   fetch(apiUrl)
     .then(response => {
@@ -38,14 +43,22 @@ function fetchRecipes(ingredientsArray) {
     })
     .then(data => {
       // Clear the previous recipes
-      recipeList.innerHTML = "";
+      recipeList.innerHTML = '';
 
       for (let i = 0; i < data.hits.length; i++) {
         const recipe = data.hits[i].recipe;
 
-        // Create a list item for each recipe and display its label
+        // Create a link (<a>) element for each recipe title
+        const link = document.createElement("a");
+        link.textContent = recipe.label;
+        link.href = recipe.url; // Set the href attribute to the recipe's URL
+        link.target = "_blank"; // Open the link in a new tab/window
+
+        // Create a list item (<li>) and append the link to it
         const listItem = document.createElement("li");
-        listItem.textContent = recipe.label;
+        listItem.appendChild(link);
+
+        // Append the list item to the recipe list
         recipeList.appendChild(listItem);
       }
       console.log(data);
@@ -54,6 +67,7 @@ function fetchRecipes(ingredientsArray) {
       console.error("Fetch error:", error);
     });
 }
+
 
 // Function to add an ingredient to the list and fetch recipes
 function addIngredient() {

@@ -43,9 +43,18 @@ function fetchRecipes(ingredientsArray) {
       for (let i = 0; i < data.hits.length; i++) {
         const recipe = data.hits[i].recipe;
 
+
+        //link code section//
+        const link = document.createElement("a");
+        link.textContent = recipe.label;
+        link.href = recipe.url;
+        link.target = "_blank";
+
+
+
         // Create a list item for each recipe and display its label
         const listItem = document.createElement("li");
-        listItem.textContent = recipe.label;
+        listItem.appendChild(link);
         recipeList.appendChild(listItem);
       }
       console.log(data);
